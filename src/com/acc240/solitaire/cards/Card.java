@@ -1,4 +1,4 @@
-package acc240.solitaire.cards;
+package com.acc240.solitaire.cards;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * The class contains methods to draw itself
  *
  * @author Aaron Councilman
- * @version 1.00
+ * @version 1.01
  */
 public class Card {
 
@@ -176,28 +176,21 @@ public class Card {
 
             // draw value
             String text = value.getString();
-
-            if (value != Value.TEN) {
-                g.setFont(normal);
-                g.drawString(text, 85, 15);
-                g.drawString(text, 5, 150);
-            } else {
-                g.setFont(normal);
-                g.drawString(text, 80, 15);
-                g.drawString(text, 5, 150);
-            }
+            drawCornerStrings(g, text, normal);
 
             // draw card center
-            g.setFont(fancy);
             switch (value) {
                 case KING:
-                    g.drawString("K", WIDTH / 2 - 25, HEIGHT / 2 + 25);
+                    drawCenteredString(g, "K", fancy);
+                    //g.drawString("K", WIDTH / 2 - 25, HEIGHT / 2 + 25);
                     break;
                 case QUEEN:
-                    g.drawString("Q", WIDTH / 2 - 25, HEIGHT / 2 + 25);
+                    drawCenteredString(g, "Q", fancy);
+                    //g.drawString("Q", WIDTH / 2 - 25, HEIGHT / 2 + 25);
                     break;
                 case JACK:
-                    g.drawString("J", WIDTH / 2 - 25, HEIGHT / 2 + 25);
+                    drawCenteredString(g, "J", fancy);
+                    //g.drawString("J", WIDTH / 2 - 25, HEIGHT / 2 + 25);
                     break;
                 default:
                     int[][] locs = centers[value.getInteger() - 1];
@@ -253,6 +246,24 @@ public class Card {
         res += value.getString();
 
         return res;
+    }
+
+    private static void drawCenteredString(Graphics g, String text, Font f) {
+      FontMetrics metrics = g.getFontMetrics(f);
+      int x = (WIDTH - metrics.stringWidth(text)) / 2;
+      int y = (HEIGHT - metrics.getHeight()) / 2 + metrics.getAscent();
+      g.setFont(f);
+      g.drawString(text, x, y);
+    }
+
+    private static void drawCornerStrings(Graphics g, String text, Font f) {
+      FontMetrics metrics = g.getFontMetrics(f);
+      int width = metrics.stringWidth(text);
+      int height = metrics.getHeight();
+
+      g.setFont(f);
+      g.drawString(text, 5, HEIGHT - 5);
+      g.drawString(text, WIDTH - 2 - width, height - 6);
     }
 
     public enum Suit {

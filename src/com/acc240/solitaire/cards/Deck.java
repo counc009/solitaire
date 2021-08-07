@@ -1,11 +1,11 @@
-package acc240.solitaire.cards;
+package com.acc240.solitaire.cards;
 
 /**
  * A deck of cards
  * A collection of cards, such as the deck or any stack of cards in the game
  *
  * @author Aaron Councilman
- * @version 1.00
+ * @version 1.01
  */
 public class Deck {
     private Card[] cards;

@@ -1,4 +1,4 @@
-package acc240.solitaire;
+package com.acc240.solitaire;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -7,7 +7,7 @@ import java.awt.event.WindowListener;
 /**
  * The main class for a Solitaire Game
  * @author Aaron Councilman
- * @version 1.00
+ * @version 1.01
  */
 public class Game extends JFrame implements WindowListener {
 

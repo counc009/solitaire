@@ -1,7 +1,7 @@
-package acc240.solitaire;
+package com.acc240.solitaire;
 
-import acc240.solitaire.cards.Card;
-import acc240.solitaire.cards.Deck;
+import com.acc240.solitaire.cards.Card;
+import com.acc240.solitaire.cards.Deck;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ import java.util.Random;
  * It is also responsible for rendering the entire game and managing user interaction with the game
  *
  * @author Aaron Councilman
- * @version 1.00
+ * @version 1.01
  */
 public class SolitaireBoard extends JPanel implements MouseListener, MouseMotionListener {
 
@@ -102,11 +102,20 @@ public class SolitaireBoard extends JPanel implements MouseListener, MouseMotion
         for (int i = 0; i < 4; i++)
             g.drawRect(15 + (Card.WIDTH + 15) * (i + 3), 15, Card.WIDTH, Card.HEIGHT);
 
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(19, 72, 21));
         g.fillRect(280, 65, 60, 40);
-        g.setColor(Color.RED);
-        g.drawString("New", 297, 80);
-        g.drawString("Game", 295, 95);
+        g.setColor(Color.WHITE);
+
+        Rectangle rect = new Rectangle(280, 65, 60, 40);
+        FontMetrics metrics = g.getFontMetrics(g.getFont());
+        
+        int xN = rect.x + (rect.width - metrics.stringWidth("New")) / 2;
+        int yN = rect.y + rect.height / 2 - metrics.getHeight() + metrics.getAscent();
+        g.drawString("New", xN, yN);
+
+        int xG = rect.x + (rect.width - metrics.stringWidth("Game")) / 2;
+        int yG = rect.y + (rect.height / 2) + metrics.getAscent();
+        g.drawString("Game", xG, yG);
     }
 
     private void drawCards(Graphics g) {
